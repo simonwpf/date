@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日期与周数</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f5f7fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            min-width: 320px;
+        }
+        .date {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .week {
+            font-size: 1.4rem;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 0.8rem;
+        }
+        .week-num {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="date" id="currentDate">——年——月——日 星期—</div>
+        <div class="week">第 <span class="week-num" id="weekNum">—</span> 周</div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            
+            // 格式化日期
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            
+            // 获取星期
+            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+            const weekday = weekdays[now.getDay()];
+            
+            // 计算ISO周数
+            const firstJan = new Date(year, 0, 1);
+            const diffDays = Math.floor((now - firstJan) / (24 * 60 * 60 * 1000));
+            const weekNum = Math.ceil((diffDays + firstJan.getDay() + 1) / 7);
+            
+            // 更新页面
+            document.getElementById('currentDate').textContent = `${year}年${month}月${day}日 星期${weekday}`;
+            document.getElementById('weekNum').textContent = weekNum;
+        }
+        
+        // 初始加载
+        updateDateTime();
+        // 每天0点更新周数（避免每秒计算）
+        setInterval(() => new Date().getHours() === 0 && updateDateTime(), 60000);
+    </script>
+</body>
+</html>
