@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日期与周数</title>
+    <title>日期与周数 (ISO标准)</title>
     <style>
         body {
             display: flex;
@@ -11,32 +11,54 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: #f5f7fa;
-            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #e4e9f5);
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         .container {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            min-width: 320px;
+            border-radius: 16px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            min-width: 340px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #3498db);
         }
         .date {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: #2c3e50;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
+            letter-spacing: 1px;
         }
         .week {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #7f8c8d;
             border-top: 1px solid #ecf0f1;
-            padding-top: 0.8rem;
+            padding-top: 1rem;
+            margin-top: 1rem;
         }
         .week-num {
             color: #e74c3c;
             font-weight: 600;
+            background: #fef5f5;
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+        .iso-label {
+            font-size: 0.9rem;
+            color: #95a5a6;
+            margin-top: 0.5rem;
+            font-style: italic;
         }
     </style>
 </head>
@@ -47,7 +69,19 @@
     </div>
 
     <script>
-        function updateDateTime() {
+        // 符合ISO 8601标准的周数计算（每周从周一开始）
+        function getISOWeek(d) {
+            const date = new Date(d);
+            date.setHours(0, 0, 0, 0);
+            // 调整到本周的周四（ISO标准）
+            date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+            const yearStart = new Date(date.getFullYear(), 0, 1);
+            const diff = date - yearStart;
+            const dayCount = diff / (24 * 60 * 60 * 1000);
+            return Math.ceil((dayCount + yearStart.getDay() + 1) / 7);
+        }
+
+        function updateDisplay() {
             const now = new Date();
             
             // 格式化日期
@@ -55,24 +89,24 @@
             const month = (now.getMonth() + 1).toString().padStart(2, '0');
             const day = now.getDate().toString().padStart(2, '0');
             
-            // 获取星期
+            // 获取星期（不显示时间）
             const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
             const weekday = weekdays[now.getDay()];
             
-            // 计算ISO周数
-            const firstJan = new Date(year, 0, 1);
-            const diffDays = Math.floor((now - firstJan) / (24 * 60 * 60 * 1000));
-            const weekNum = Math.ceil((diffDays + firstJan.getDay() + 1) / 7);
-            
-            // 更新页面
+            // 更新日期和星期
             document.getElementById('currentDate').textContent = `${year}年${month}月${day}日 星期${weekday}`;
-            document.getElementById('weekNum').textContent = weekNum;
+            
+            // 每天0点更新周数
+            const nextMidnight = new Date(now);
+            nextMidnight.setHours(24, 0, 0, 0); // 次日0点
+            setTimeout(() => {
+                document.getElementById('weekNum').textContent = getISOWeek(new Date());
+            }, nextMidnight - now);
         }
-        
-        // 初始加载
-        updateDateTime();
-        // 每天0点更新周数（避免每秒计算）
-        setInterval(() => new Date().getHours() === 0 && updateDateTime(), 60000);
+
+        // 初始化显示
+        updateDisplay();
+        document.getElementById('weekNum').textContent = getISOWeek(new Date());
     </script>
 </body>
 </html>
