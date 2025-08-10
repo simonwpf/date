@@ -22,14 +22,13 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             width: 100%;
             background: white;
             border-radius: 16px;
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin-top: 20px;
-            padding-bottom: 40px;
         }
         
         .header {
@@ -76,13 +75,6 @@
             border-radius: 6px;
         }
         
-        .iso-label {
-            font-size: 0.9rem;
-            color: #95a5a6;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-        
         .schedule-section {
             padding: 20px;
         }
@@ -108,72 +100,45 @@
             border-radius: 3px;
         }
         
-        table {
+        /* 紧凑型值班表样式 */
+        .compact-schedule {
             width: 100%;
             border-collapse: collapse;
             margin: 0 auto;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 1.05rem;
+            border-radius: 12px;
             overflow: hidden;
         }
         
-        th, td {
+        .compact-schedule th, 
+        .compact-schedule td {
             border: 1px solid #e0e0e0;
-            padding: 14px 10px;
+            padding: 15px 10px;
             text-align: center;
         }
         
-        th {
+        .compact-schedule th {
             background-color: #3498db;
             color: white;
             font-weight: 600;
             font-size: 1.1rem;
         }
         
-        .time-cell {
-            min-width: 150px;
+        .time-period {
+            font-weight: 600;
+            color: #2c5282;
+            background: #e6f7ff;
+        }
+        
+        .weekday-cell {
             position: relative;
         }
         
-        .week-indicator {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            background: #f1c40f;
-            color: #2c3e50;
-            font-size: 0.8rem;
-            padding: 1px 6px;
-            border-radius: 10px;
-        }
-        
-        .single-week {
-            background-color: #e8f5e9;
-        }
-        
-        .double-week {
-            background-color: #ffebee;
-        }
-        
-        .every-week {
-            background-color: #e3f2fd;
-        }
-        
-        .weekday-highlight {
-            border: 2px solid #e74c3c;
-            font-weight: bold;
-            position: relative;
-        }
-        
-        .weekday-highlight::after {
-            content: '今日';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #e74c3c;
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 3px;
+        .highlight {
+            background-color: #fffbdd;
+            box-shadow: inset 0 0 0 3px #f6ad55;
+            font-weight: 600;
         }
         
         .instructions {
@@ -185,191 +150,104 @@
             line-height: 1.6;
         }
         
-        .highlight {
-            background-color: #ffeb3b;
-            animation: highlight 2s ease-in-out;
-            border-radius: 4px;
-        }
-        
-        @keyframes highlight {
-            0% { background-color: rgba(255, 235, 59, 0.3); }
-            50% { background-color: rgba(255, 235, 59, 0.7); }
-            100% { background-color: rgba(255, 235, 59, 0); }
-        }
-        
-        /* 日期查询区域样式 */
         .query-section {
-            margin: 30px 20px 0;
+            margin: 40px 0;
             padding: 25px;
-            background: linear-gradient(135deg, #e6f7ff, #f0f9ff);
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid #d1ecff;
+            background: #e6f0ff;
+            border-radius: 15px;
+            text-align: center;
         }
         
         .query-title {
-            text-align: center;
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: #2c3e50;
-            position: relative;
-            padding-bottom: 12px;
-        }
-        
-        .query-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #3498db, #e74c3c);
-            border-radius: 3px;
-        }
-        
-        .date-picker-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .date-label {
-            font-size: 1.1rem;
-            color: #2c3e50;
-            font-weight: 500;
+            font-size: 1.4rem;
+            color: #2c5282;
+            margin-bottom: 20px;
         }
         
         .date-input {
             padding: 12px 20px;
             font-size: 1.1rem;
-            border: 2px solid #3498db;
+            border: 2px solid #3182ce;
             border-radius: 10px;
-            min-width: 240px;
-            transition: all 0.3s ease;
+            margin: 0 10px;
+            width: 250px;
         }
         
-        .date-input:focus {
-            outline: none;
-            border-color: #e74c3c;
-            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
-        }
-        
-        .query-btn {
-            background: linear-gradient(to right, #3498db, #2c3e50);
+        .btn {
+            background: #3182ce;
             color: white;
             border: none;
-            padding: 14px 35px;
+            padding: 12px 30px;
             font-size: 1.1rem;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
         }
         
-        .query-btn:hover {
-            background: linear-gradient(to right, #2980b9, #1c2833);
+        .btn:hover {
+            background: #2c5282;
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .result-container {
-            margin-top: 20px;
-            padding: 25px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #3498db;
-            transition: all 0.3s ease;
-        }
-        
-        .result-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eaeaea;
-        }
-        
-        .result-date {
-            font-size: 1.5rem;
-            color: #2c3e50;
-            font-weight: 600;
-        }
-        
-        .week-info {
-            background: #e74c3c;
-            color: white;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        .staff-info {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-        }
-        
-        .staff-label {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-            margin-bottom: 10px;
-        }
-        
-        .staff-names {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            font-weight: 700;
-            padding: 10px;
-            background: linear-gradient(to right, #e8f5e9, #e3f2fd);
-            border-radius: 8px;
-            margin-top: 8px;
-            border-left: 5px solid #3498db;
-        }
-        
-        .schedule-details {
-            margin-top: 20px;
+        .result {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #2c5282;
             padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            font-size: 1rem;
-            color: #7f8c8d;
-            text-align: center;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
         
+        .week-type {
+            display: inline-block;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+        
+        .single-week {
+            background: #c6f6d5;
+            color: #2b6c3e;
+        }
+        
+        .double-week {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* 响应式优化 */
         @media (max-width: 768px) {
             .date {
                 font-size: 1.8rem;
             }
             
-            table {
+            .compact-schedule {
                 font-size: 0.9rem;
             }
             
-            .time-cell {
+            .time-period {
                 min-width: 120px;
             }
             
-            .date-picker-container {
-                flex-direction: column;
+            .date-input {
+                width: 100%;
+                margin: 10px 0;
             }
             
-            .result-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            
-            .staff-names {
-                font-size: 1.5rem;
+            .btn {
+                width: 100%;
+                margin-top: 10px;
             }
         }
         
@@ -378,22 +256,9 @@
                 font-size: 1.5rem;
             }
             
-            table {
+            .compact-schedule {
                 display: block;
                 overflow-x: auto;
-            }
-            
-            .query-section {
-                padding: 20px 15px;
-            }
-            
-            .date-input {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .query-btn {
-                width: 100%;
             }
         }
     </style>
@@ -407,85 +272,66 @@
         <div class="date-week-container">
             <div class="date" id="currentDate">——年——月——日 星期—</div>
             <div class="week">第 <span class="week-num" id="weekNum">—</span> 周</div>
-            <div class="iso-label">符合ISO 8601标准</div>
-            <div class="iso-label">（每年含周四的第一个星期为第一周，每周从周一开始）</div>
         </div>
         
         <div class="schedule-section">
             <h2 class="section-title">本周实验室值班安排</h2>
             
-            <table>
+            <!-- 紧凑型值班表 -->
+            <table class="compact-schedule">
+                <colgroup>
+                    <col style="width: 30%">
+                    <col style="width: 50%">
+                    <col style="width: 20%">
+                </colgroup>
                 <thead>
                     <tr>
-                        <th>时段/星期</th>
-                        <th>星期一</th>
-                        <th>星期二</th>
-                        <th>星期三</th>
-                        <th>星期四</th>
-                        <th>星期五</th>
-                        <th>星期六</th>
-                        <th>星期日</th>
+                        <th>时间段</th>
+                        <th>值班人员</th>
+                        <th>值班时间</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 晚上值班（17:00-20:00） -->
-                    <tr>
-                        <td class="time-cell">17:00-20:00</td>
-                        <td id="monEve" class="single-week"></td>
-                        <td id="tueEve" class="single-week"></td>
-                        <td id="wedEve" class="single-week"></td>
-                        <td id="thuEve" class="single-week"></td>
-                        <td id="friEve" class="single-week"></td>
-                        <td></td>
-                        <td></td>
+                    <!-- 周一至周五合并为一行 -->
+                    <tr id="weekdaysRow">
+                        <td class="time-period">周一至周五</td>
+                        <td id="weekdaysStaff">段训广、梁福年（单周）<br>汪志明、任一航（双周）</td>
+                        <td>17:00-20:00</td>
                     </tr>
                     
-                    <!-- 白天值班（8:00-20:00） -->
-                    <tr>
-                        <td class="time-cell">8:00-20:00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td id="satDay" class="single-week"></td>
-                        <td id="sunDay" class="every-week"></td>
+                    <!-- 周六 -->
+                    <tr id="saturdayRow">
+                        <td class="time-period">周六</td>
+                        <td id="saturdayStaff">段训广（单周）<br>梁福年（双周）</td>
+                        <td>8:00-20:00</td>
+                    </tr>
+                    
+                    <!-- 周日 -->
+                    <tr id="sundayRow">
+                        <td class="time-period">周日</td>
+                        <td>汪志明、任一航</td>
+                        <td>8:00-20:00</td>
                     </tr>
                 </tbody>
             </table>
             
             <div class="instructions">
-                <p><strong>本周值班规则：</strong></p>
-                <ul>
-                    <li><span class="highlight">周一到周五</span> 17:00-20:00：<span id="weekdayStaff">单周段训广和梁福年，双周汪志明和任一航</span></li>
-                    <li><span class="highlight">周六</span> 8:00-20:00：<span id="saturdayStaff">单周段训广，双周梁福年</span></li>
-                    <li><span class="highlight">周日</span> 8:00-20:00：<span id="sundayStaff">汪志明和任一航（每周固定）</span></li>
-                </ul>
-                <p style="margin-top: 15px;"><strong>当前状态：</strong> 今天星期 <span id="todayWeekday">—</span>，<span id="todayShift">—</span></p>
+                <p><strong>当前状态：</strong> 今天星期 <span id="todayWeekday">—</span>，值班人员为<span id="todayShift">—</span></p>
             </div>
         </div>
         
-        <!-- 新增的日期查询区域 -->
         <div class="query-section">
-            <h2 class="query-title">日期查询功能</h2>
-            <div class="date-picker-container">
-                <div class="date-label">选择日期：</div>
-                <input type="date" id="datePicker" class="date-input">
-                <button id="queryButton" class="query-btn">查询值班人员</button>
+            <h3 class="query-title">按日期查询</h3>
+            <input type="date" id="testDate" class="date-input" value="2026-01-01">
+            <button id="verifyBtn" class="btn">查询值班人员</button>
+            
+            <div id="verifyResult" class="result">
+                输入日期，点击查询按钮查看值班人员
             </div>
-            <div class="result-container">
-                <div class="result-header">
-                    <div class="result-date">查询结果：<span id="resultDate">未选择日期</span></div>
-                    <div class="week-info">第<span id="resultWeek">—</span>周（<span id="weekType">—</span>）</div>
-                </div>
-                <div class="staff-info">
-                    <div class="staff-label">当日值班人员：</div>
-                    <div class="staff-names" id="staffResult">请选择日期后查询</div>
-                </div>
-                <div class="schedule-details">
-                    <p id="scheduleDetail">选择日期后，此处将显示值班时间和具体安排</p>
-                </div>
-            </div>
+        </div>
+        
+        <div class="footer">
+            基于ISO 8601周数标准计算（每年首个含周四的星期为第一周，每周从周一开始）
         </div>
     </div>
     
@@ -550,41 +396,29 @@
             const today = new Date().getDay();
             
             // 更新值班人员显示
-            document.getElementById('weekdayStaff').textContent = 
+            document.getElementById('weekdaysStaff').textContent = 
                 singleWeek ? "段训广、梁福年" : "汪志明、任一航";
             document.getElementById('saturdayStaff').textContent = 
                 singleWeek ? "段训广" : "梁福年";
-            document.getElementById('sundayStaff').textContent = "汪志明、任一航";
             
-            // 更新表格内容
-            // 周一到周五晚班
-            for (let i = 1; i <= 5; i++) {
-                const cellId = ['monEve', 'tueEve', 'wedEve', 'thuEve', 'friEve'][i-1];
-                const cell = document.getElementById(cellId);
-                cell.textContent = singleWeek ? "段训广、梁福年" : "汪志明、任一航";
-                cell.className = singleWeek ? "single-week" : "double-week";
-                
-                // 高亮今天的晚班
-                if (i === today) {
-                    cell.classList.add('weekday-highlight');
-                }
-            }
+            // 高亮今日所在行
+            highlightTodayRow(today);
+        }
+        
+        // 高亮今日所在行
+        function highlightTodayRow(weekdayIndex) {
+            // 移除所有高亮
+            document.getElementById('weekdaysRow').classList.remove('highlight');
+            document.getElementById('saturdayRow').classList.remove('highlight');
+            document.getElementById('sundayRow').classList.remove('highlight');
             
-            // 周六值班
-            const satCell = document.getElementById('satDay');
-            satCell.textContent = singleWeek ? "段训广" : "梁福年";
-            satCell.className = singleWeek ? "single-week" : "double-week";
-            
-            // 周日值班
-            const sunCell = document.getElementById('sunDay');
-            sunCell.textContent = "汪志明、任一航";
-            sunCell.className = "every-week";
-            
-            // 高亮今天的周六/周日班
-            if (today === 6) {
-                satCell.classList.add('weekday-highlight');
-            } else if (today === 0) {
-                sunCell.classList.add('weekday-highlight');
+            // 根据星期高亮对应行
+            if (weekdayIndex >= 1 && weekdayIndex <= 5) { // 周一至周五
+                document.getElementById('weekdaysRow').classList.add('highlight');
+            } else if (weekdayIndex === 6) { // 周六
+                document.getElementById('saturdayRow').classList.add('highlight');
+            } else if (weekdayIndex === 0) { // 周日
+                document.getElementById('sundayRow').classList.add('highlight');
             }
         }
         
@@ -617,50 +451,29 @@
         }
         
         // 日期查询功能
-        function setupDateQuery() {
-            const datePicker = document.getElementById('datePicker');
-            const queryButton = document.getElementById('queryButton');
+        function verifyDate() {
+            const dateStr = document.getElementById('testDate').value;
+            const date = new Date(dateStr);
+            const result = getTodayStaff(date);
             
-            // 设置默认日期为今天
-            const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
-            datePicker.value = todayStr;
+            let scheduleInfo = '';
+            if (result.scheduleDetail) {
+                scheduleInfo = `<p>${result.scheduleDetail}</p>`;
+            }
             
-            // 查询按钮点击事件
-            queryButton.addEventListener('click', function() {
-                const selectedDate = new Date(datePicker.value);
-                
-                // 获取该日期的值班信息
-                const result = getTodayStaff(selectedDate);
-                
-                // 格式化日期显示
-                const year = selectedDate.getFullYear();
-                const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
-                const day = selectedDate.getDate().toString().padStart(2, '0');
-                const weekday = weekdayFull[selectedDate.getDay()];
-                
-                // 更新结果显示
-                document.getElementById('resultDate').textContent = `${year}年${month}月${day}日 ${weekday}`;
-                document.getElementById('resultWeek').textContent = result.weekNum;
-                document.getElementById('weekType').textContent = result.singleWeek ? '单周' : '双周';
-                document.getElementById('staffResult').textContent = result.staff;
-                document.getElementById('scheduleDetail').textContent = result.scheduleDetail;
-                
-                // 添加动画效果
-                const resultContainer = document.querySelector('.result-container');
-                resultContainer.style.transform = 'scale(1.03)';
-                setTimeout(() => {
-                    resultContainer.style.transform = 'scale(1)';
-                }, 300);
-            });
-            
-            // 初始查询一次
-            queryButton.click();
+            document.getElementById('verifyResult').innerHTML = `
+                <strong>${date.getFullYear()}年${(date.getMonth() + 1).toString().padStart(2, '0')}月${date.getDate().toString().padStart(2, '0')}日</strong>
+                <p>星期${weekdays[date.getDay()]} · 第${result.weekNum}周（<span class="week-type ${result.singleWeek ? 'single-week' : 'double-week'}">${result.singleWeek ? '单周' : '双周'}</span>）</p>
+                <p><strong>值班人员：</strong> ${result.staff}</p>
+                ${scheduleInfo}
+            `;
         }
         
         // 初始化
         updateDisplay();
-        setupDateQuery();
+        
+        // 绑定查询按钮事件
+        document.getElementById('verifyBtn').addEventListener('click', verifyDate);
     </script>
 </body>
 </html>
